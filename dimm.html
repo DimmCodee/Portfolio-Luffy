@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Halaman intro dengan video */
+    #introSection {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #heroVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(10px); /* Blur latar belakang */
+  background: rgba(0, 0, 0, 0.4); /* semi-transparan */
+  color: white;
+  text-align: center;
+  animation: blurFadeIn 2s ease forwards;
+}
+
+#videoOverlay h1,
+#videoOverlay button {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: fadeOutBlur 1s ease forwards;
+}
+
+#videoOverlay h1 {
+  animation-delay: 0.3s;
+}
+
+#videoOverlay button {
+  animation-delay: 1s;
+}
+
+@keyframes blurFadeIn {
+  from {
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  to {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes fadeOutBlur {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+    /* Sembunyikan container utama */
+    .container {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Halaman Intro -->
+<section id="introSection">
+  <video id="heroVideo" autoplay muted playsinline>
+    <source src="./vidio/luffy.mp4" type="video/mp4" />
+  </video>
+  <div id="videoOverlay">
+    <h1 >Welcome To My Portfolio.</h1>
+    <button onclick="showPortfolio()">Masuk</button>
+  </div>
+</section>
+
+<!-- Halaman Portfolio -->
+<div class="container">
+  <!-- Navbar -->
+  <nav id="Home" data-aos="fade-down" data-aos-duration="1500">
+    <div class="logo" data-aos="fade-right" data-aos-duration="2000">Dunn<b>.</b></div>
+    <ul class="navItems" data-aos="fade-up" data-aos-duration="2000">
+      <li><a href="#Home" data-aos="fade-up" data-aos-delay="100">Home</a></li>
+      <li><a href="#About" data-aos="fade-up" data-aos-delay="200">About</a></li>
+      <li><a href="#" data-aos="fade-up" data-aos-delay="300">Skills</a></li>
+      <li><a href="#" data-aos="fade-up" data-aos-delay="400">Blog</a></li>
+    </ul>
+    <div class="links" data-aos="fade-left" data-aos-duration="2000">
+      <a href="#" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-linkedin"></i></a>
+      <a href="#" data-aos="zoom-in" data-aos-delay="600"><i class="fa-brands fa-square-instagram"></i></a>
+      <a href="#" data-aos="zoom-in" data-aos-delay="700"><i class="fab fa-twitter"></i></a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="wrapper">
+    <div class="cols cols0">
+      <div class="topline">Hello</div>
+      <h1>I'm <span class="multiText" style="font-size: 50px;"></span></h1>
+      <p>"I believe technology can solve many problems, and I want to be part of the solution."</p>
+      <div class="btns">
+        <a href="#"><button>Download CV</button></a>
+        <a href="#"><button>Hire Me</button></a>
+      </div>
+    </div>
+    <div class="cols cols1" data-aos="fade-left" data-aos-duration="2000">
+      <div class="imgbox">
+        <img src="./img/luffy4.png" style="width: auto;" alt="Image"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="about-section" id="About">
+    <div class="about-content" data-aos="fade-up">
+      <h2>ABOUT ME</h2>
+      <p>"I’m a programmer who loves anime, blending creativity and logic to build innovative solutions while constantly improving my skills."<br>By: Da.syahh</p>
+    </div>
+  </div>
+</div>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1400,
+    offset: 400,
+    once: false,
+  });
+</script>
+
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typingEffect = new Typed(".multiText", {
+    strings: ["Programmer", "Designer", "Gamer"],
+    loop: true,
+    typeSpeed: 100,
+    backSpeed: 80,
+    backDelay: 1500,
+    startDelay: 800,
+  });
+</script>
+
+<!-- Video Script -->
+<script>
+  const video = document.getElementById("heroVideo");
+  const overlay = document.getElementById("videoOverlay");
+  const container = document.querySelector(".container");
+  const intro = document.getElementById("introSection");
+
+ video.addEventListener("ended", () => {
+  overlay.style.display = "flex";
+  // Reset animasi agar muncul setelah display:flex aktif
+  overlay.querySelector("h1").style.animation = "fadeOutBlur 1s ease forwards 0.3s";
+  overlay.querySelector("button").style.animation = "fadeOutBlur 1s ease forwards 1s";
+});
+
+
+  function showPortfolio() {
+    intro.style.display = "none";
+    container.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
